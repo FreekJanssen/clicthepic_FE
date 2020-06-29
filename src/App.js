@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
+import MessageBox from "./components/MessageBox";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -19,13 +20,14 @@ export default function App() {
   return (
     <div>
       <Navigation />
+      <MessageBox />
       {isLoading ? <Loading /> : null}
 
       <Switch>
         <Route exact path="/" />
         <Route path="/about" />
         <Route path="/login" component={Login} />
-        <Route path="/Signup" component={Signup} />
+        <Route path="/signup" component={Signup} />
       </Switch>
     </div>
   );
