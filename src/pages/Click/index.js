@@ -4,11 +4,12 @@ import axios from 'axios';
 
 export default function Click() {
   const [state, setState] = useState('');
+  const [tagArray, setTagArray] = useState([]);
 
   const imaggaKey = process.env.REACT_APP_IMAGGA_KEY;
   const randomAnimal = 'https://source.unsplash.com/500x300/?animal';
   const randomFood = 'https://source.unsplash.com/500x300/?food';
-  const randomClothes = 'https://source.unsplash.com/1600x900/?clothes';
+  const randomClothes = 'https://source.unsplash.com/500x300/?clothes';
   const axiosConfig = { 
     headers: { Authorization: `Basic ${imaggaKey}` },
     params: { limit: 3 }
@@ -28,14 +29,18 @@ export default function Click() {
         //get the actual URLs in an array
         const imageURLS = imageResponses.map(res => res.request.responseURL);
 
-        //Generate tags for the random images using Imaggi
+        //Generate tags for the random images using Imagga
         const tagsResponses = await Promise.all([
           axios.get(`https://api.imagga.com/v2/tags?image_url=${imageURLS[0]}`, axiosConfig),
           axios.get(`https://api.imagga.com/v2/tags?image_url=${imageURLS[1]}`, axiosConfig),
           //axios.get(`https://api.imagga.com/v2/tags?image_url=${imageURLS[2]}`, axiosConfig)
         ]);
-        //create nested arrays with tags
+        //create arrays with tags
         const imageTags = tagsResponses.map(res => res.data.result.tags);
+        const animalTags = imageTags[0].map(tag => tag.tag.en);
+        const foodTags = imageTags[1].map(tag => tag.tag.en);
+
+        setTagArray([...animalTags, ...foodTags]);
 
         setState([
           { animal: { url: imageURLS[0], tags: imageTags[0] } },
@@ -50,7 +55,7 @@ export default function Click() {
     getImageTags();
   },[]);
 
-  if(!state.animal.tags) return <></>;
+  if(!state.animal.tags) return <div>Loading..</div>;
   return (
     <div>
       {state.map(category => {
