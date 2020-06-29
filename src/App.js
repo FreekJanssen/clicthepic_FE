@@ -1,11 +1,19 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <div>
+      <Navigation />
+
+      <Switch>
+        <Route exact path="/" />
+        <Route path="/about" />
+
+        <Route path="/login" />
+      </Switch>
     </div>
   );
 }
-
-export default App;
