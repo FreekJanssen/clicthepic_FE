@@ -74,11 +74,11 @@ export const getUserWithStoredToken = () => {
   };
 };
 
-export const signUp = (name, email, password) => {
+export const Signup = (name, email, password) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      const response = await axios.post(`${apiUrl}/signup`, {
+      const response = await axios.post(`${apiUrl}/Signup`, {
         name,
         email,
         password,
