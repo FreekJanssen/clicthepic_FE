@@ -2,10 +2,17 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { fetchCards } from "../../store/cards/actions";
 import "./index.css";
 
 export default function Cards() {
+  const dispatch = useDispatch();
+
+  const findCard = (category) => {
+    dispatch(fetchCards(category));
+  };
+
   return (
     <div>
       <h2 className="head">flipping cards</h2>
@@ -15,18 +22,33 @@ export default function Cards() {
             <Form.Label>Choose category</Form.Label>
             <div className="categoryButtons">
               <Form.Group className="mt-5">
-                <Button className="oneButton" variant="info" type="submit">
-                  Activities{" "}
+                <Button
+                  className="oneButton"
+                  variant="info"
+                  type="button"
+                  onClick={(event) => findCard(event.currentTarget.innerText)}
+                >
+                  Activities
                 </Button>
               </Form.Group>
               <Form.Group className="mt-5">
-                <Button className="oneButton" variant="warning" type="submit">
-                  Jobs{" "}
+                <Button
+                  className="oneButton"
+                  variant="warning"
+                  type="button"
+                  onClick={(event) => findCard(event.currentTarget.innerText)}
+                >
+                  Jobs
                 </Button>
               </Form.Group>
               <Form.Group className="mt-5">
-                <Button className="oneButton" variant="success" type="submit">
-                  Places{" "}
+                <Button
+                  className="oneButton"
+                  variant="success"
+                  type="button"
+                  onClick={(event) => findCard(event.currentTarget.innerText)}
+                >
+                  Places
                 </Button>
               </Form.Group>
             </div>
@@ -34,16 +56,16 @@ export default function Cards() {
         </Container>
       </div>
       <div className="cardsArea">
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
+        <div className="flip-card">
+          <div className="flip-card-inner">
+            <div className="flip-card-front">
               <img
                 className="picture"
                 src="https://cdn.pixabay.com/photo/2020/02/17/15/05/fair-4856748_1280.jpg"
                 alt="Illustration"
               />
             </div>
-            <div class="flip-card-back">
+            <div className="flip-card-back">
               <h1 className="txtOnImg">TEXT</h1>
             </div>
           </div>
