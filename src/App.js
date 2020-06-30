@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Navigation from "./components/Navigation";
 
 import Click from './pages/Click';
+import Home from './pages/Home';
 
 import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
@@ -28,7 +29,7 @@ export default function App() {
       {isLoading ? <Loading /> : null}
 
       <Switch>
-        <Route exact path="/" />
+        <Route exact path="/" component={Home}/>
         <Route path='/click' component={Click} />
         <Route path="/about" />
         <Route path="/login" component={Login} />
