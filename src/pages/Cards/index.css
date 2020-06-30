@@ -1,14 +1,8 @@
-.all {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
 .head {
   text-align: center;
   margin: 0 auto;
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 .container {
   display: flex;
@@ -33,7 +27,7 @@
   background-color: transparent;
   width: 300px;
   height: 300px;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  perspective: 1000px;
 }
 
 /* This container is needed to position the front and back side */
@@ -81,6 +75,16 @@
 }
 
 .cardsArea {
+  display: inline-block;
+  justify-items: center;
+  margin-top: 40px;
+}
+
+.chooseCategory {
+  text-align: center;
+}
+
+.cardsAreaWrapper {
   display: flex;
   justify-content: center;
 }
