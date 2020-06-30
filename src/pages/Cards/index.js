@@ -7,7 +7,7 @@ import "./index.css";
 
 export default function Cards() {
   return (
-    <>
+    <div>
       <h2 className="head">flipping cards</h2>
       <div className="all">
         <Container className="container">
@@ -40,6 +40,23 @@ export default function Cards() {
           </Form>
         </Container>
       </div>
-    </>
+
+      <h4>Test card</h4>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img
+              className="picture"
+              src="https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb"
+              alt="Avatar"
+            />
+          </div>
+          <div class="flip-card-back">
+            <h1>TEXT</h1>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
