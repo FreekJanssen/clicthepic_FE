@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { setMessage } from '../../store/appState/actions';
+import { useSelector } from 'react-redux';
+
+import { selectLanguage } from '../../store/appState/selectors';
 
 
 export default function Click() {
@@ -14,9 +16,11 @@ export default function Click() {
   const randomAnimal = 'https://source.unsplash.com/500x300/?animal';
   const randomFood = 'https://source.unsplash.com/500x300/?food';
   const randomClothes = 'https://source.unsplash.com/500x300/?clothes';
+  const language = useSelector(selectLanguage);
+
   const axiosConfig = { 
     headers: { Authorization: `Basic ${imaggaKey}` },
-    params: { limit: 3 }
+    params: { limit: 3, language: language }
   };
 
   useEffect(() => {
@@ -39,10 +43,11 @@ export default function Click() {
           axios.get(`https://api.imagga.com/v2/tags?image_url=${imageURLS[1]}`, axiosConfig),
           //axios.get(`https://api.imagga.com/v2/tags?image_url=${imageURLS[2]}`, axiosConfig)
         ]);
+        console.log(tagsResponses);
         //create arrays with tags
         const imageTags = tagsResponses.map(res => res.data.result.tags);
-        const animalTags = imageTags[0].map(tag => tag.tag.en);
-        const foodTags = imageTags[1].map(tag => tag.tag.en);
+        const animalTags = imageTags[0].map(tag => tag.tag[language]);
+        const foodTags = imageTags[1].map(tag => tag.tag[language]);
         const tagArray = [...animalTags, ...foodTags];
 
         //grab a random index of the tags array
@@ -62,7 +67,7 @@ export default function Click() {
   },[count]);
 
   function nextRound(){
-    setCount(count+1)
+    setCount(count+1);
     setMsg('');
   }
   function clickedImage(e){
