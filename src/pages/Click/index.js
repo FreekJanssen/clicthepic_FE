@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { setMessage } from '../../store/appState/actions';
 
 
 export default function Click() {
-  const [state, setState] = useState('');
-  const [tagArray, setTagArray] = useState([]);
+  const [state, setState] = useState({})
+  const [randomTag, setRandomTag] = useState([]);
+  const [msg, setMsg] = useState('');
 
   const imaggaKey = process.env.REACT_APP_IMAGGA_KEY;
   const randomAnimal = 'https://source.unsplash.com/500x300/?animal';
@@ -39,14 +41,16 @@ export default function Click() {
         const imageTags = tagsResponses.map(res => res.data.result.tags);
         const animalTags = imageTags[0].map(tag => tag.tag.en);
         const foodTags = imageTags[1].map(tag => tag.tag.en);
+        const tagArray = [...animalTags, ...foodTags];
 
-        setTagArray([...animalTags, ...foodTags]);
+        //grab a random index of the tags array
+        setRandomTag(tagArray[Math.floor(Math.random() * tagArray.length)]);
 
-        setState([
-          { animal: { url: imageURLS[0], tags: imageTags[0] } },
-          { food: { url: imageURLS[1], tags: imageTags[1] } },
-          //{ clothes: { url: imageURLS[2], tags: imageTags[2] } }
-        ]);
+        setState({
+          animal: { url: imageURLS[0], tags: [...animalTags] },
+          food: { url: imageURLS[1], tags: [...foodTags] }
+          //clothes: { url: imageURLS[2], tags: imageTags[2] }
+        });
         
       }catch(e){
         console.log(e);
@@ -55,12 +59,18 @@ export default function Click() {
     getImageTags();
   },[]);
 
-  if(!state.animal.tags) return <div>Loading..</div>;
+  function clickedImage(e){
+    if(state[e.target.alt].tags.includes(randomTag)) setMsg('Correct!');
+    else setMsg('Incorrect');
+  }
+  if(!state.animal) return <div>Loading..</div>;
+
   return (
     <div>
-      {state.map(category => {
-        return <p><img src={category.url}/><br/>{category.tags.map(tag => <span>{tag.tag.en+' '}</span>)}</p>
-      })}
+      <h1>{randomTag}</h1>
+      <img src={state.animal.url} alt='animal' onClick={clickedImage}/>
+      <img src={state.food.url} alt='food' onClick={clickedImage}/>
+      <h2>{msg}</h2>
     </div>
   );
 }
