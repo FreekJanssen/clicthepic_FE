@@ -15,13 +15,8 @@ export default function Cards() {
             <Form.Label>Choose category</Form.Label>
             <div className="categoryButtons">
               <Form.Group className="mt-5">
-                <Button className="oneButton" variant="primary" type="submit">
-                  People{" "}
-                </Button>
-              </Form.Group>
-              <Form.Group className="mt-5">
                 <Button className="oneButton" variant="info" type="submit">
-                  Fruits{" "}
+                  Activities{" "}
                 </Button>
               </Form.Group>
               <Form.Group className="mt-5">
