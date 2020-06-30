@@ -11,33 +11,31 @@ export default function Cards() {
       <h2 className="head">flipping cards</h2>
       <div className="all">
         <Container className="container">
-          <Form as={Col} xs={6} sm={6} md={5} lg={4} xl={4}>
-            <Form.Group controlId="formBasicName">
-              <Form.Label>Choose category</Form.Label>
-              <div className="categoryButtons">
-                <Form.Group className="mt-5">
-                  <Button className="oneButton" variant="primary" type="submit">
-                    Clothes{" "}
-                  </Button>
-                </Form.Group>
-                <Form.Group className="mt-5">
-                  <Button className="oneButton" variant="info" type="submit">
-                    Transport{" "}
-                  </Button>
-                </Form.Group>
-                <Form.Group className="mt-5">
-                  <Button className="oneButton" variant="warning" type="submit">
-                    Items{" "}
-                  </Button>
-                </Form.Group>
-                <Form.Group className="mt-5">
-                  <Button className="oneButton" variant="success" type="submit">
-                    Sport{" "}
-                  </Button>
-                </Form.Group>
-              </div>
-            </Form.Group>
-          </Form>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Choose category</Form.Label>
+            <div className="categoryButtons">
+              <Form.Group className="mt-5">
+                <Button className="oneButton" variant="primary" type="submit">
+                  People{" "}
+                </Button>
+              </Form.Group>
+              <Form.Group className="mt-5">
+                <Button className="oneButton" variant="info" type="submit">
+                  Fruits{" "}
+                </Button>
+              </Form.Group>
+              <Form.Group className="mt-5">
+                <Button className="oneButton" variant="warning" type="submit">
+                  Jobs{" "}
+                </Button>
+              </Form.Group>
+              <Form.Group className="mt-5">
+                <Button className="oneButton" variant="success" type="submit">
+                  Places{" "}
+                </Button>
+              </Form.Group>
+            </div>
+          </Form.Group>
         </Container>
       </div>
       <div className="cardsArea">
