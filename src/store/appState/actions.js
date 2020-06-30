@@ -4,6 +4,7 @@ export const APP_LOADING = "APP_LOADING";
 export const APP_DONE_LOADING = "APP_DONE_LOADING";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const SET_LANGUAGE = 'SET_LANGUAGE';
 
 export const appLoading = () => ({ type: APP_LOADING });
 export const appDoneLoading = () => ({ type: APP_DONE_LOADING });
@@ -33,4 +34,8 @@ export const showMessageWithTimeout = (
 
     setTimeout(() => dispatch(clearMessage()), timeout);
   };
+};
+
+export function setLanguage(language){
+  return { type: SET_LANGUAGE, payload: language };
 };
