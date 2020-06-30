@@ -7,6 +7,8 @@ export default function Click() {
   const [state, setState] = useState({})
   const [randomTag, setRandomTag] = useState([]);
   const [msg, setMsg] = useState('');
+  const [count, setCount] = useState(1);
+  const [score, setScore] = useState(0);
 
   const imaggaKey = process.env.REACT_APP_IMAGGA_KEY;
   const randomAnimal = 'https://source.unsplash.com/500x300/?animal';
@@ -57,20 +59,31 @@ export default function Click() {
       };
     };
     getImageTags();
-  },[]);
+  },[count]);
 
+  function nextRound(){
+    setCount(count+1)
+    setMsg('');
+  }
   function clickedImage(e){
-    if(state[e.target.alt].tags.includes(randomTag)) setMsg('Correct!');
+    if(msg) return;
+    if(state[e.target.alt].tags.includes(randomTag)) {
+       setMsg('Correct!');
+       setScore(score+1);
+    }
     else setMsg('Incorrect');
   }
   if(!state.animal) return <div>Loading..</div>;
+  if(count >= 6) return <div><h1>Finished! <br/>Your Score: {score}/5</h1></div>
 
   return (
     <div>
+      <h1>Click the Pic -- Round {count}/5</h1>
       <h1>{randomTag}</h1>
       <img src={state.animal.url} alt='animal' onClick={clickedImage}/>
       <img src={state.food.url} alt='food' onClick={clickedImage}/>
       <h2>{msg}</h2>
+      <button onClick={nextRound}>NEXT</button>
     </div>
   );
 }
