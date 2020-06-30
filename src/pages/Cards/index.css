@@ -1,0 +1,15 @@
+.all {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.head {
+  margin-top: 40px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 70px;
+}

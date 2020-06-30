@@ -3,7 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Navigation from "./components/Navigation";
 
-import Click from './pages/Click';
+import Click from "./pages/Click";
+import Cards from "./pages/Cards";
 
 import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
@@ -29,8 +30,9 @@ export default function App() {
 
       <Switch>
         <Route exact path="/" />
-        <Route path='/click' component={Click} />
+        <Route path="/click" component={Click} />
         <Route path="/about" />
+        <Route path="/cards" component={Cards} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
       </Switch>
