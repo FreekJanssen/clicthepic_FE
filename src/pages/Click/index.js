@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
+import index.css
 
 import { selectLanguage } from '../../store/appState/selectors';
 
@@ -113,3 +114,4 @@ export default function Click() {
     </div>
   );
 }
+

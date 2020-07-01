@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCards, setCards } from "../../store/cards/actions";
 import { selectCards } from "../../store/cards/selectors";
-
 import "./index.css";
 
 export default function Cards() {

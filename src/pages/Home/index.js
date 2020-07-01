@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Dropdown, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-
 import { setLanguage } from "../../store/appState/actions";
+import "./index.css";
 
 export default function Home() {
   const [dropdownText, setDropdownText] = useState("Choose Language");
@@ -12,7 +12,8 @@ export default function Home() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="buttonsArea">
+      <h1 className="homeHead">Ready to start the language games?</h1>
       <Dropdown
         onSelect={(eventKey) => {
           const eventData = eventKey.split(",");
@@ -20,7 +21,9 @@ export default function Home() {
           setDropdownText(eventData[1]);
         }}
       >
-        <Dropdown.Toggle id="dropdown-basic">{dropdownText}</Dropdown.Toggle>
+        <Dropdown.Toggle className="languageButton" id="dropdown-basic">
+          {dropdownText}
+        </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item eventKey="en,English">English</Dropdown.Item>
           <Dropdown.Item eventKey="es,Spanish">Spanish</Dropdown.Item>
@@ -28,8 +31,22 @@ export default function Home() {
           <Dropdown.Item eventKey="fr,French">French</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      <Button onClick={() => history.push("/click")}>Play Click the Pic</Button>
-      <Button onClick={() => history.push("/flip")}>Play Flip the Pic</Button>
+      <div className="gameButtons">
+        <Button
+          variant="success"
+          className="clickButton"
+          onClick={() => history.push("/click")}
+        >
+          Play Click the Pic
+        </Button>
+        <Button
+          variant="info"
+          className="flipButton"
+          onClick={() => history.push("/flip")}
+        >
+          Play Flip the Pic
+        </Button>
+      </div>
     </div>
   );
 }

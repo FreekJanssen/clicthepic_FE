@@ -1,0 +1,23 @@
+.contentAbout {
+  width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+a.repoButton {
+  text-align: center;
+  padding-bottom: 0;
+  margin: 20px;
+}
+
+a.repoButton:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.twoButtons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}

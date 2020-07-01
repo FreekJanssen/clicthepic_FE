@@ -12,6 +12,7 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import About from "./pages/About";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 
@@ -34,7 +35,7 @@ export default function App() {
         <Route exact path="/" component={Home} />
         <Route path="/click" component={Click} />
 
-        <Route path="/about" />
+        <Route path="/about" component={About} />
         <Route path="/flip" component={Cards} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
