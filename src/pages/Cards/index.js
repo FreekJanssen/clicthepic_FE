@@ -1,53 +1,83 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCards, setCards } from "../../store/cards/actions";
+import { selectCards } from "../../store/cards/selectors";
+
 import "./index.css";
 
 export default function Cards() {
+  const dispatch = useDispatch();
+  const cards = useSelector(selectCards);
+
+  const findCard = (category) => {
+    dispatch(fetchCards(category));
+  };
+
+  //effect with cleanup:
+  useEffect(() => {
+    return () => {
+      dispatch(setCards([]));
+    };
+  }, []);
+
   return (
     <div>
-      <h2 className="head">flipping cards</h2>
-      <div className="all">
-        <Container className="container">
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Choose category</Form.Label>
-            <div className="categoryButtons">
-              <Form.Group className="mt-5">
-                <Button className="oneButton" variant="info" type="submit">
-                  Activities{" "}
-                </Button>
-              </Form.Group>
-              <Form.Group className="mt-5">
-                <Button className="oneButton" variant="warning" type="submit">
-                  Jobs{" "}
-                </Button>
-              </Form.Group>
-              <Form.Group className="mt-5">
-                <Button className="oneButton" variant="success" type="submit">
-                  Places{" "}
-                </Button>
-              </Form.Group>
-            </div>
-          </Form.Group>
-        </Container>
-      </div>
-      <div className="cardsArea">
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img
-                className="picture"
-                src="https://cdn.pixabay.com/photo/2020/02/17/15/05/fair-4856748_1280.jpg"
-                alt="Illustration"
-              />
-            </div>
-            <div class="flip-card-back">
-              <h1 className="txtOnImg">TEXT</h1>
-            </div>
-          </div>
+      <h1 className="head">Flip the Pic</h1>
+      <div className="">
+        <p className="chooseCategory">
+          choose category and flip the pic to see its description
+        </p>
+        <div className="container">
+          <Button
+            className="oneButton"
+            variant="info"
+            type="button"
+            onClick={(event) => findCard(event.currentTarget.innerText)}
+          >
+            Activities
+          </Button>
+
+          <Button
+            className="oneButton"
+            variant="warning"
+            type="button"
+            onClick={(event) => findCard(event.currentTarget.innerText)}
+          >
+            Jobs
+          </Button>
+
+          <Button
+            className="oneButton"
+            variant="success"
+            type="button"
+            onClick={(event) => findCard(event.currentTarget.innerText)}
+          >
+            Places
+          </Button>
         </div>
+      </div>
+      <div className="cardsAreaWrapper">
+        {cards.length > 0 &&
+          cards.map((item) => (
+            <div className="cardsArea" key={item.id}>
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <img
+                      className="picture"
+                      src={item.image}
+                      alt="Illustration"
+                    />
+                  </div>
+                  <div className="flip-card-back">
+                    <h3 className="txtOnImg">{item.word}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
