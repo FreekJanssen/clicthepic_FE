@@ -68,6 +68,9 @@ export default function Click() {
         });
 
       }catch(e){
+        console.log('retrying');
+        //Imagga fails occasionally (like 1 in 25 calls)
+        //this retries once if that happens
         if(!retry) setRetry(true);
         if(!!retry) return;
       };
@@ -80,6 +83,7 @@ export default function Click() {
     setMsg('');
     setState({});
     setRandomTag('');
+    setRetry(false);
   }
 
   function clickedImage(e){
