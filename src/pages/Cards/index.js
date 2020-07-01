@@ -24,9 +24,11 @@ export default function Cards() {
 
   return (
     <div>
-      <h2 className="head">Flip the Pic</h2>
+      <h1 className="head">Flip the Pic</h1>
       <div className="">
-        <p className="chooseCategory">choose category</p>
+        <p className="chooseCategory">
+          choose category and flip the pic to see its description
+        </p>
         <div className="container">
           <Button
             className="oneButton"
