@@ -14,6 +14,7 @@ export default function Click() {
   const [msg, setMsg] = useState('');
   const [count, setCount] = useState(1);
   const [score, setScore] = useState(0);
+  const [retry, setRetry] = useState(false);
 
   const randomAnimal = 'https://source.unsplash.com/500x300/?animal';
   const randomFood = 'https://source.unsplash.com/500x300/?food';
@@ -67,11 +68,12 @@ export default function Click() {
         });
 
       }catch(e){
-        console.log(e);
+        if(!retry) setRetry(true);
+        if(!!retry) return;
       };
     };
     getImageTags();
-  },[count, language]);
+  },[count, language, retry]);
 
   function nextRound(){
     setCount(count+1);
