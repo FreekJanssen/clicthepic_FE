@@ -4,6 +4,10 @@
   margin-top: 50px;
 }
 
+.homeHead {
+  margin-bottom: 100px;
+}
+
 button.languageButton,
 button.clickButton,
 button.flipButton {
@@ -16,7 +20,7 @@ button.flipButton {
 }
 
 .clickButton {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .gameButtons {

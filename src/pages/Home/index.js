@@ -13,6 +13,7 @@ export default function Home() {
 
   return (
     <div className="buttonsArea">
+      <h1 className="homeHead">Ready to start the language games?</h1>
       <Dropdown
         onSelect={(eventKey) => {
           const eventData = eventKey.split(",");
