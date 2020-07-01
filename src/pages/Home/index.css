@@ -1,0 +1,35 @@
+.buttonsArea {
+  display: grid;
+  justify-items: center;
+  margin-top: 50px;
+}
+
+button.languageButton,
+button.clickButton,
+button.flipButton {
+  display: block;
+  font-size: 25px;
+}
+
+.languageButton {
+  width: 245px;
+}
+
+.clickButton {
+  margin-right: 10px;
+}
+
+.gameButtons {
+  margin-top: 200px;
+  display: inline-flex;
+}
+
+.dropdown-item {
+  font-size: 20px;
+}
+
+.dropdown-menu.show {
+  width: 100%;
+  transform: none !important;
+  top: 51px !important;
+}
