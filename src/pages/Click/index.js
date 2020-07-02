@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import './index.css';
 
 import { selectLanguage } from '../../store/appState/selectors';
+import { selectUser } from '../../store/user/selectors'
+
+import { updateScore } from '../../store/user/actions';
 
 import Loading from '../../components/Loading';
 
+
 export default function Click() {
+
+  const userData = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const [state, setState] = useState({})
   const [randomTag, setRandomTag] = useState([]);
@@ -69,6 +76,7 @@ export default function Click() {
         });
 
       }catch(e){
+        console.log(e)
         console.log('retrying');
         //Imagga fails occasionally (like 1 in 25 calls)
         //this retries once if that happens
@@ -96,12 +104,22 @@ export default function Click() {
     else setMsg('Incorrect');
   }
 
-  if(count >= 6) return <div><h1>Finished! <br/>Your Score: {score}/5</h1></div>
-  //if(msg === 'Incorrect') return <h1>GAME OVER</h1>
+  //if(count >= 6) return <div><h1>Finished! <br/>Your Score: {score}/5</h1></div>
+  if(msg === 'Incorrect'){
+    if(userData.scoreList[language] < score) dispatch(updateScore(language, score));
+    return(
+      <div>
+        <h1>GAME OVER</h1>
+        {userData.scoreList[language] < score 
+        ? <p>New Highscore!: {score}</p>
+        : <p>Too Bad! You did better last time.</p>}
+      </div>
+    );
+  }  ;
 
   return (
     <div>
-      <h1>Click the Pic -- Round {count}/5</h1>
+      <h1>Click the Pic -- Round {count}/Endless</h1>
       <h1>{randomTag}</h1>
       {state.animal 
       ? <div>
