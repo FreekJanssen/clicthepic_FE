@@ -37,3 +37,7 @@ button.nextButton {
   justify-items: center;
   text-align: center;
 }
+
+.loading_spinner {
+  height: 60vh;
+}
