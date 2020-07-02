@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import axios from "axios";
-import "./index.css";
 import { selectLanguage } from "../../store/appState/selectors";
 import { selectUser } from "../../store/user/selectors";
 import { updateScore } from "../../store/user/actions";
 import Loading from "../../components/Loading";
+import "./index.css";
 
 export default function Click() {
   const userData = useSelector(selectUser);
@@ -105,12 +105,12 @@ export default function Click() {
     if (userData.scoreList?.[language] < score)
       dispatch(updateScore(language, score));
     return (
-      <div>
-        <h1>GAME OVER</h1>
+      <div className="finalMsg">
+        <h1 className="head">GAME OVER</h1>
         {userData.scoreList?.[language] < score ? (
-          <p>New Highscore!: {score}</p>
+          <h5 className="head">New Highscore: {score}</h5>
         ) : (
-          <p>Too Bad! You did better last time.</p>
+          <h5>Too Bad! You did better last time.</h5>
         )}
       </div>
     );
@@ -118,20 +118,34 @@ export default function Click() {
 
   return (
     <div>
-      <h1>Click the Pic -- Round {count}/Endless</h1>
-      <h1>{randomTag}</h1>
+      <h1 className="head">Click the Pic </h1>
+      <h3 className="head"> Round {count} / Endless</h3>
+      <hr className="hrLine"></hr>
+      <h1 className="randomTag">{randomTag}</h1>
       {state.animal ? (
-        <div>
-          <img src={state.animal.url} alt="animal" onClick={clickedImage} />
-          <img src={state.food.url} alt="food" onClick={clickedImage} />
+        <div className="randomImages">
+          <img
+            className="img1"
+            src={state.animal.url}
+            alt="animal"
+            onClick={clickedImage}
+          />
+          <img
+            className="img2"
+            src={state.food.url}
+            alt="food"
+            onClick={clickedImage}
+          />
         </div>
       ) : (
         <Loading />
       )}
-      <h2>{msg}</h2>
-      <Button disabled={!msg} onClick={nextRound}>
-        NEXT
-      </Button>
+      <div className="nextButtonArea">
+        <h2 className="correct-incorrectMsg">{msg}</h2>
+        <Button className="nextButton" disabled={!msg} onClick={nextRound}>
+          NEXT
+        </Button>
+      </div>
     </div>
   );
 }
