@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { logOut } from "../../store/user/actions";
 import Button from "react-bootstrap/Button";
 import { selectUser } from "../../store/user/selectors";
@@ -10,10 +10,11 @@ export default function LoggedIn() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(selectUser);
+
   return (
     <>
       <Nav.Item style={{ padding: ".5rem 2rem" }}>
-        You are logged in as {user.name}
+        <Link to="/account">{user.name}'s account</Link>
       </Nav.Item>
       <Button
         onClick={() => {
