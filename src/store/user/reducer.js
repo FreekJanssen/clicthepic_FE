@@ -19,6 +19,9 @@ export default (state = initialState, action) => {
     case TOKEN_STILL_VALID:
       return { ...state, ...action.payload };
 
+    case 'UPDATE_SCORE':
+      return { ...state, scoreList: { ...state.scoreList, ...action.payload } };
+
     default:
       return state;
   }

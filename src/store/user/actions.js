@@ -99,3 +99,9 @@ export const Signup = (name, email, password) => {
     }
   };
 };
+
+export function updateScore(language, score){
+  return async (dispatch, getState) => {
+    dispatch({ type: 'UPDATE_SCORE', payload: { [language]: score } });
+  }
+}
