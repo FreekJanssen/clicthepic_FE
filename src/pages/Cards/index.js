@@ -27,7 +27,7 @@ export default function Cards() {
         <p className="chooseCategory">
           choose category and flip the pic to see its description
         </p>
-        <div className="container">
+        <div className="cardsContainer">
           <Button
             className="oneButton"
             variant="info"
