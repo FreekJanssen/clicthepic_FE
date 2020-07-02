@@ -11,10 +11,6 @@ a.repoButton {
   margin: 20px;
 }
 
-.goToRepo {
-  font-size: 25px;
-}
-
 a.repoButton:focus {
   outline: none;
   box-shadow: none;

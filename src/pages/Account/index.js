@@ -5,7 +5,6 @@ import "./index.css";
 
 export default function Account() {
   const user = useSelector(selectUser);
-  console.log("here", user.scoreList);
 
   return (
     <div>
