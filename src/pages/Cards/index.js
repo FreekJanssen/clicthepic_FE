@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCards, setCards } from "../../store/cards/actions";
 import { selectCards } from "../../store/cards/selectors";
+import Button from "react-bootstrap/Button";
 import "./index.css";
 
 export default function Cards() {
@@ -25,7 +25,7 @@ export default function Cards() {
       <h1 className="head">Flip the Pic</h1>
       <div className="">
         <p className="chooseCategory">
-          choose category and flip the pic to see its description
+          Choose category and flip the pic to see its description
         </p>
         <div className="cardsContainer">
           <Button

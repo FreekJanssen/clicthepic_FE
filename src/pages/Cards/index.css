@@ -86,6 +86,7 @@ button.oneButton {
 .chooseCategory {
   text-align: center;
   font-size: 17px;
+  padding-top: 30px;
 }
 
 .cardsAreaWrapper {

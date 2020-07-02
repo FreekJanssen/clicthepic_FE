@@ -1,14 +1,29 @@
 .scoresHead {
   text-align: center;
   margin: 0 auto;
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 .scoreList {
-  text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .hrLine {
   width: 250px;
+}
+
+.entireAccountArea {
+  background: rgb(236, 241, 154);
+  padding-top: 1px;
+  padding-bottom: 2000px;
+}
+
+.scoreTable {
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 10px;
+  width: 280px;
+  padding-bottom: 20px;
+  margin-top: 90px;
 }
