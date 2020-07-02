@@ -1,0 +1,39 @@
+.finalMsg {
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 300px;
+  padding-bottom: 5000px;
+  background-color: rgb(236, 241, 154);
+}
+
+.randomTag {
+  text-align: center;
+  margin: 0 auto;
+  color: tomato;
+}
+
+.randomImages {
+  display: flex;
+  justify-content: center;
+}
+
+.img1,
+.img2 {
+  text-align: center;
+  padding: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 600px;
+  cursor: pointer;
+}
+
+button.nextButton {
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.nextButtonArea {
+  justify-items: center;
+  text-align: center;
+}
