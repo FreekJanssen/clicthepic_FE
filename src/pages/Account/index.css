@@ -1,4 +1,14 @@
 .scoresHead {
   text-align: center;
   margin: 0 auto;
+  padding-top: 50px;
+}
+
+.scoreList {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.hrLine {
+  width: 200px;
 }
