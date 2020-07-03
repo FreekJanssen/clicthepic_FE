@@ -102,15 +102,17 @@ export default function Click() {
 
   //if(count >= 6) return <div><h1>Finished! <br/>Your Score: {score}/5</h1></div>
   if (msg === "Incorrect") {
-    if (userData.scoreList?.[language] < score)
+    if (userData.scoreList?.[language] < score){
       dispatch(updateScore(language, score));
+      
+    }
     return (
       <div className="finalMsg">
         <h1 className="head">GAME OVER</h1>
-        {userData.scoreList?.[language] < score ? (
+        {userData.scoreList?.[language] <= score ? (
           <h5 className="head">New Highscore: {score}</h5>
         ) : (
-          <h5>Too Bad! You did better last time.</h5>
+          <h5>Your score: {score}</h5>
         )}
       </div>
     );
