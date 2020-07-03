@@ -107,7 +107,7 @@ export function updateScore(language, score){
     dispatch({ type: 'UPDATE_SCORE', payload: { [language]: score } });
 
     try{
-      const response = await axios.patch('http://localhost:4000/scores', 
+      const response = await axios.patch(`${apiUrl}/scores`, 
         { language: language, score: score },
         { headers: { Authorization: `Bearer ${token}` } }
       );
