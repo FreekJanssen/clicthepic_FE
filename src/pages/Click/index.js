@@ -8,6 +8,8 @@ import { updateScore } from "../../store/user/actions";
 import Loading from "../../components/Loading";
 import "./index.css";
 
+import { IMAGGA_KEY } from '../../config/constants';
+
 export default function Click() {
   const userData = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -21,26 +23,23 @@ export default function Click() {
 
   const randomAnimal = "https://source.unsplash.com/500x300/?animal";
   const randomFood = "https://source.unsplash.com/500x300/?food";
-  //const randomClothes = 'https://source.unsplash.com/500x300/?clothes';
   const language = useSelector(selectLanguage);
 
   useEffect(() => {
-    const imaggaKey = process.env.REACT_APP_IMAGGA_KEY;
     //axios configuration object with auth header,
     //limit (otherwise it fetches 100 tags),
     //and language code
     const axiosConfig = {
-      headers: { Authorization: `Basic ${imaggaKey}` },
+      headers: { Authorization: `Basic ${IMAGGA_KEY}` },
       params: { limit: 3, language: language },
     };
 
     async function getImageTags() {
       try {
-        //get 3 random images, 1 of each category
+        //get 2 random images, 1 of each category
         const imageResponses = await Promise.all([
           await axios.get(`${randomAnimal}`),
           await axios.get(`${randomFood}`),
-          //await axios.get(`${randomClothes}`)
         ]);
         //get the actual URLs in an array
         const imageURLS = imageResponses.map((res) => res.request.responseURL);
@@ -55,7 +54,6 @@ export default function Click() {
             `https://api.imagga.com/v2/tags?image_url=${imageURLS[1]}`,
             axiosConfig
           ),
-          //axios.get(`https://api.imagga.com/v2/tags?image_url=${imageURLS[2]}`, axiosConfig)
         ]);
 
         //create arrays with tags
@@ -70,8 +68,8 @@ export default function Click() {
         setState({
           animal: { url: imageURLS[0], tags: [...animalTags] },
           food: { url: imageURLS[1], tags: [...foodTags] },
-          //clothes: { url: imageURLS[2], tags: imageTags[2] }
         });
+
       } catch (e) {
         console.log(e);
         console.log("retrying");
@@ -84,6 +82,7 @@ export default function Click() {
     getImageTags();
   }, [count, language, retry]);
 
+  //Resets most of the states, useEffect will run again due to count dependency
   function nextRound() {
     setCount(count + 1);
     setMsg("");
@@ -92,6 +91,7 @@ export default function Click() {
     setRetry(false);
   }
 
+  //if the correct image is cliked, adds 1 to score
   function clickedImage(e) {
     if (msg) return;
     if (state[e.target.alt].tags.includes(randomTag)) {
@@ -100,7 +100,8 @@ export default function Click() {
     } else setMsg("Incorrect");
   }
 
-  //if(count >= 6) return <div><h1>Finished! <br/>Your Score: {score}/5</h1></div>
+  //if the user makes a mistake, it's game over
+  //if the user is logged in, and achieved a new highscore, redux and db are updated
   if (msg === "Incorrect") {
     if (userData.scoreList?.[language] < score){
       dispatch(updateScore(language, score));
