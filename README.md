@@ -39,10 +39,10 @@ and avoiding merge conflicts, and to practice with technologies that we learned 
 
 Two external API's were used for the click game:
 
-Unslpash for images: https://unsplash.com/developers
+Unsplash for images: https://unsplash.com/developers
 Imagga for image-reading: https://imagga.com/
 
-If you want to use this app locally, you should get your own API by registering to Imagga.
+If you want to use this app locally, you should get your own API key by registering to Imagga.
 Then add it to the src/config/constants.js file.
 
 ### Backend
