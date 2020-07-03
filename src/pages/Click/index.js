@@ -104,8 +104,8 @@ export default function Click() {
   if (msg === "Incorrect") {
     if (userData.scoreList?.[language] < score){
       dispatch(updateScore(language, score));
-      
     }
+        
     return (
       <div className="finalMsg">
         <h1 className="head">GAME OVER</h1>

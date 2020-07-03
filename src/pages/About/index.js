@@ -7,12 +7,13 @@ export default function About() {
     <div>
       <h1 className="head">About this project</h1>
       <p className="contentAbout">
-        Hey! Let's talk about CLICK THE PIC - the language learning app... This
-        project was created by Ewa and Freek, just to practice programming with
-        React, Redux, external API, Sequelize, Express and other tools. The main
-        idea of this app is to have a fun while learning a foreign language. So,
-        we provided 2 educational games, based on visual memorizing the
-        vocabulary.
+        Hey! Let's talk about CLICK THE PIC - the language learning app...
+        <br></br>
+        This project was created by Ewa and Freek, just to practice programming
+        with React, Redux, external API, Sequelize, Express and other tools. The
+        main idea of this app is to have a fun while learning a foreign
+        language. So, we provided 2 educational games, based on visual
+        memorizing the vocabulary.
         <hr></hr>Please notice, this is just MVP, not a final version. This app
         can be developed in the future... For more details, please visit our
         Github repos:
